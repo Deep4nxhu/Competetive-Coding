@@ -1,0 +1,36 @@
+# // Experiment 1.2 Conatain duplicate (leetcode-219)
+
+# // Aim:-
+# // To write a python program that determines whether an integer array contains two equal elements whose indices differ by at most k. Return true if such a pair exists; otherwise, return false.
+
+# // Algorithm (Using Hash Map)
+
+# // Start.
+# // Create a dictionary to store each element and its latest index.
+# // Traverse the array from left to right.
+# // For each element:
+# // Check if it already exists in the dictionary.
+# // If it exists, calculate the index difference: if (current_index - previous_index) <= k, return True.
+# // Update the current element's index in the dictionary.
+# // If the loop completes without finding a valid pair, return False.
+# // Stop.
+
+# // Code:-
+class Solution:
+    def containsNearbyDuplicate(self, nums, k):
+        mp = {}
+        n = len(nums)
+        for i in range(n):
+            if nums[i] in mp:
+                if i - mp[nums[i]] <= k:
+                    return True
+            mp[nums[i]] = i
+        return False
+
+
+# Test
+if __name__ == "__main__":
+    sol = Solution()
+    nums = [1, 2, 3, 1]
+    k = 3
+    print(sol.containsNearbyDuplicate(nums, k))   # Output: True
